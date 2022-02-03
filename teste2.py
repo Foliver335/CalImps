@@ -2,78 +2,78 @@
 # https://receita.economia.gov.br/interface/cidadao/irpf/2020/declaracao/preenchimento
 import webbrowser
 
-
 def calculo():
 
-    if rendapcalc <= 1903.98:
+
+    if renda_por_calculo <= 2500:
         print('isento')
         faixa = 0
         irfaixa = 0
         vaproxano = 0
-        return [faixa, rendapcalc, irfaixa, vaproxano]
+        return [faixa, renda_por_calculo, irfaixa, vaproxano]
     # Valor calculado o qual haverá deduçoes
     # Calculo = (VALOR DA FAIXA / 100)  * ALIQUOTA/ VALOR DA FAIXA - DEDUÇÃO
     # O governo nao cobra a aliquota do recebedor do salario sobre o valor integral
     # recebido, mas sim, do valor de isenção até o seu valor recebido. VOcê não paga tributo da parte que é isenta
 
-    if rendapcalc > 1903.98 and rendapcalc <= 2826.65:
+    if  renda_por_calculo > 2500.00 and renda_por_calculo <= 3200.00:
         faixa = 1
-        irfaixa = (rendapcalc / 100) * 7.5 - 142.8
+        irfaixa = (renda_por_calculo / 100) * 7.5 - 142.8
         valmensal = "{:.2f}".format(irfaixa)
         print('o valor mensal do tributo descontado em folha (em reais) é:', valmensal)
         vaproxano = irfaixa * 12
         varredano = "{:.2f}".format(vaproxano)
         print('o valor aproximado anual do tributo é', varredano)
-        return [faixa, rendapcalc, irfaixa, vaproxano]
+        return [faixa, renda_por_calculo, irfaixa, vaproxano]
 
-    if rendapcalc > 2826.65 and rendapcalc <= 3751.05:
+    if renda_por_calculo > 3200.01 and renda_por_calculo <= 4250.00:
         faixa = 2
-        irfaixa = (rendapcalc / 100) * 15 - 354.8
+        irfaixa = (renda_por_calculo / 100) * 15 - 354.8
         valmensal = "{:.2f}".format(irfaixa)
         print('o valor mensal do tributo descontado em folha (em reais) é:', valmensal)
         vaproxano = irfaixa * 12
         varredano = "{:.2f}".format(vaproxano)
         print('o valor aproximado anual do tributo é', varredano)
-        return [faixa, rendapcalc, irfaixa, vaproxano]
+        return [faixa, renda_por_calculo, irfaixa, vaproxano]
 
-    if rendapcalc > 3751.05 and rendapcalc <= 4664.68:
+    if renda_por_calculo > 4250.01 and renda_por_calculo <= 5300.00:
         faixa = 3
-        irfaixa = (rendapcalc / 100) * 22.5 - 636.13
+        irfaixa = (renda_por_calculo / 100) * 22.5 - 636.13
         valmensal = "{:.2f}".format(irfaixa)
         print('o valor mensal do tributo descontado em folha (em reais) é:', valmensal)
         vaproxano = irfaixa * 12
         varredano = "{:.2f}".format(vaproxano)
         print('o valor aproximado anual do tributo é', varredano)
-        return [faixa, rendapcalc, irfaixa, vaproxano]
+        return [faixa, renda_por_calculo, irfaixa, vaproxano]
 
-    if rendapcalc > 4664.68:
+    if renda_por_calculo > 5300.01:
         faixa = 4
-        irfaixa = (rendapcalc / 100) * 27.5 - 869.36
+        irfaixa = (renda_por_calculo / 100) * 27.5 - 869.36
         valmensal = "{:.2f}".format(irfaixa)
         print('o valor mensal do tributo descontado em folha (em reais) é: ', valmensal)
         vaproxano = irfaixa * 12
         varredano = "{:.2f}".format(vaproxano)
         print('o valor aproximado anual do tributo é', varredano)
-        return [faixa, rendapcalc, irfaixa, vaproxano]
+        return [faixa, renda_por_calculo, irfaixa, vaproxano]
 
 
-print('Insira abaixo o valor mensal auferido no ano de 2019')
+print('Insira abaixo o valor mensal referente ao ano de exercicio (2022)')
 
 
 while True:
 
-    rendapcalc: str = input("Valor mensal de renda: ")
+    renda_por_calculo: str = input("Valor mensal de renda: ")
 
     try:
 
-        rendapcalc = float(rendapcalc)
+        renda_por_calculo = float(renda_por_calculo)
         calculosemdesconto = calculo()
         break
 
     except:
         print('Favor inserir valor numérico')
 
-print('O valor acima é o valor do tributo devido sem adição de descontos.')
+print('O valor de referencia é o valor do tributo devido sem a adição de descontos.')
 
 if calculosemdesconto[0] != 0:
 
@@ -93,12 +93,12 @@ if calculosemdesconto[0] != 0:
 
         print('Após consultar e somar os valores para dedução, insira o valor todal anual')
         print('em reais e centavos abaixo.')
-        rendapcalc = input('Valor: ')
+        renda_por_calculo = input('Valor: ')
 
         try:
 
-            rendapcalc = float(rendapcalc) / 12
-            rendapcalc = calculosemdesconto[1] - rendapcalc
+            renda_por_calculo = float(renda_por_calculo) / 12
+            renda_por_calculo = calculosemdesconto[1] - renda_por_calculo
             comdescontos = calculo()
             tipo = 1
 
@@ -123,4 +123,4 @@ if calculosemdesconto[0] != 0:
 
 else:
     print('Como na primeira fase do cálculo, o valor inserido lhe coloca como isento,')
-    print('não é necessário passar pela segunda fase do cálculo')
+    print('não será necessário passar pela segunda fase do cálculo')
