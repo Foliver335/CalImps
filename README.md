@@ -1,4 +1,4 @@
-# CalImps
+# Calimps
 Calculadora para cotação de impostos aplicados sobre rendas e gastos ao longo do ano 
 atualizada para 2022.
 
